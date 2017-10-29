@@ -9,7 +9,7 @@
 
     <!-- Slides -->
     <div class="Store-home__sliderWrap">
-      <div class="Store-home__slides" :data-offset="currentOffset">
+      <div class="Store-home__slides" :style="`transform: translateX(${sliderOffset}px)`">
         <div v-for="product in products" class="Store-home__slide" :class="'Store-home__slide-' + product.index" :key="product.index">
           <strong>Slide n°{{ product.index }}</strong><br>
           {{ product.name }}
@@ -33,14 +33,8 @@
         products: Products,
         slider: '.Store-home__slides',
         slide: '.Store-home__slide',
-        activeSlide: 0
-      }
-    },
-
-    computed: {
-      currentOffset (offset) {
-        let currentOffset = offset || 0
-        return currentOffset
+        activeSlide: 0,
+        sliderOffset: 0
       }
     },
 
@@ -54,35 +48,31 @@
       },
 
       goToSlide (slide) {
-        let $slider = document.querySelector(this.slider)
         let $slide = document.querySelector(this.slide)
         let slideWidth = $slide.getBoundingClientRect().width
         let slideActiveIndex = slide
 
-        $slider.style.transform = 'translateX(-' + (slideWidth * slideActiveIndex) + 'px)'
         this.activeSlide = slide
-        this.currentOffset(slideWidth * slideActiveIndex)
+        this.sliderOffset = -(slideWidth * slideActiveIndex)
       },
 
       goToPrevSlide () {
-        let $slider = document.querySelector(this.slider)
         let $slide = document.querySelector(this.slide)
         let slideWidth = $slide.getBoundingClientRect().width
 
         if (this.activeSlide > 0) {
           this.activeSlide -= 1
-          $slider.style.transform = 'translateX(-' + (slideWidth * this.activeSlide) + 'px)'
+          this.sliderOffset = -(slideWidth * this.activeSlide)
         }
       },
 
       goToNextSlide () {
-        let $slider = document.querySelector(this.slider)
         let $slide = document.querySelector(this.slide)
         let slideWidth = $slide.getBoundingClientRect().width
 
         if ((this.activeSlide + 1) < this.products.length) {
           this.activeSlide += 1
-          $slider.style.transform = 'translateX(-' + (slideWidth * this.activeSlide) + 'px)'
+          this.sliderOffset = -(slideWidth * this.activeSlide)
         }
       },
 

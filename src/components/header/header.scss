@@ -1,0 +1,29 @@
+.Store-header {
+  position: relative;
+  padding: .25rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  h1 {
+    align-self: center;
+    margin: 0;
+    max-width: 60%;
+    display: inline-block;
+    vertical-align: middle;
+
+    // color: #fff;
+    font-size: 1.25rem;
+  }
+
+  &__NavBtn,
+  &__Cart {
+    display: inline-block;
+    vertical-align: middle;
+
+    button {
+      padding: .5rem;
+      font-size: .75rem;
+    }
+  }
+}

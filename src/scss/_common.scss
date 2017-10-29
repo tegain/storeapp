@@ -1,0 +1,38 @@
+/**
+ * VARS
+ */
+
+:root {
+  --col-green: #00bd33;
+  --col-orange-light: #ffbb34;
+  --col-orange-dark: #e84f2a;
+  --col-red-light: #e45151;
+  --col-red-dark: #b11818;
+}
+
+
+/**
+ * COMMON LAYOUT STYLES
+ */
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}

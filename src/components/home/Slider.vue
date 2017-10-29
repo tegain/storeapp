@@ -9,7 +9,7 @@
 
     <!-- Slides -->
     <div class="Store-home__sliderWrap">
-      <div class="Store-home__slides">
+      <div class="Store-home__slides" :data-offset="currentOffset">
         <div v-for="product in products" class="Store-home__slide" :class="'Store-home__slide-' + product.index" :key="product.index">
           <strong>Slide n°{{ product.index }}</strong><br>
           {{ product.name }}
@@ -37,10 +37,16 @@
       }
     },
 
+    computed: {
+      currentOffset (offset) {
+        let currentOffset = offset || 0
+        return currentOffset
+      }
+    },
+
     methods: {
       initSlider () {
         let $slider = document.querySelector(this.slider)
-        // let $slide = document.querySelector(this.slide)
         let slidesLgth = this.products.length
 
         $slider.style.width = slidesLgth * 100 + '%'
@@ -55,6 +61,7 @@
 
         $slider.style.transform = 'translateX(-' + (slideWidth * slideActiveIndex) + 'px)'
         this.activeSlide = slide
+        this.currentOffset(slideWidth * slideActiveIndex)
       },
 
       goToPrevSlide () {
@@ -85,7 +92,6 @@
         let touchobj = null
 
         $slider.addEventListener('touchstart', (e) => {
-          console.log(e)
           touchobj = e.changedTouches[0]
           startx = parseInt(touchobj.clientX)
           e.preventDefault()
@@ -94,7 +100,6 @@
         $slider.addEventListener('touchend', (e) => {
           touchobj = e.changedTouches[0] // reference first touch point for this event
           let dist = parseInt(touchobj.clientX) - startx // calculate dist traveled by touch point
-          console.log(dist)
 
           if (dist < -60) {
             this.goToNextSlide()

@@ -1,5 +1,9 @@
 .Store-header {
-  position: relative;
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
   padding: .25rem;
   display: flex;
   flex-flow: row nowrap;

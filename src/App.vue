@@ -1,10 +1,12 @@
 <style src="@/scss/index.scss" lang="scss"></style>
 
 <template>
-  <div id="app">
-    <store-header></store-header>
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div id="app" class="Store-app">
+    <div id="store-wrapper" class="Store-wrapper">
+      <store-header></store-header>
+
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -13,3 +15,9 @@ export default {
   name: 'app'
 }
 </script>
+
+<style lang="scss">
+  .Store-app {
+    height: 100%;
+  }
+</style>

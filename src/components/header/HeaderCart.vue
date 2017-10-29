@@ -1,6 +1,6 @@
 <template>
   <div class="Store-header__Cart">
-    <button>CART</button>
+    <router-link :to="{ name: 'Cart' }" tag="button">CART</router-link>
   </div>
 </template>
 

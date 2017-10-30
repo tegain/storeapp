@@ -1,5 +1,5 @@
 <template>
-  <div class="Store-header__Cart">
+  <div class="Store-header__cart">
     <router-link :to="{ name: 'Cart' }" tag="button">CART</router-link>
   </div>
 </template>

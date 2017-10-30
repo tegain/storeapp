@@ -2,7 +2,7 @@
   <div class="Store-home__slider">
     <!-- Slider pagination -->
     <div class="Store-home__sliderNav">
-      <button class="Store-home__sliderBullet" v-for="product in products" :key="product.index" @click="goToSlide(product.index)">
+      <button class="Store-home__sliderBullet" :class="{ 'active': index === activeSlide }" v-for="(product, index) in products" :key="product.index" @click="goToSlide(product.index)">
         {{ product.index }}
       </button>
     </div>
@@ -10,7 +10,7 @@
     <!-- Slides -->
     <div class="Store-home__sliderWrap">
       <div class="Store-home__slides" :style="`transform: translateX(${sliderOffset}px)`">
-        <div v-for="product in products" class="Store-home__slide" :class="'Store-home__slide-' + product.index" :key="product.index">
+        <div v-for="(product, index) in products" class="Store-home__slide" :class="{ 'active': index === activeSlide }" :key="product.index">
           <strong>Slide n°{{ product.index }}</strong><br>
           {{ product.name }}
         </div>
@@ -88,8 +88,8 @@
         }, false)
 
         $slider.addEventListener('touchend', (e) => {
-          touchobj = e.changedTouches[0] // reference first touch point for this event
-          let dist = parseInt(touchobj.clientX) - startx // calculate dist traveled by touch point
+          touchobj = e.changedTouches[0]
+          let dist = parseInt(touchobj.clientX) - startx
 
           if (dist < -60) {
             this.goToNextSlide()
@@ -116,19 +116,42 @@
 <style lang="scss">
   .Store-home {
 
+    &__slider {
+      position: relative;
+      height: 80%;
+    }
+
+    &__sliderNav {
+      position: absolute;
+      padding: .5rem;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    &__sliderBullet {
+      margin: 0 .25rem;
+      padding: .25rem;
+    }
+
     &__sliderWrap {
       overflow: hidden;
+      height: 100%;
     }
 
     &__slides {
       position: relative;
       transition: transform .5s;
+      height: 100%;
     }
 
     &__slide {
       position: relative;
       float: left;
       width: 100vw;
+      height: 100%;
 
       // Placeholder
       padding: 5rem;

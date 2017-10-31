@@ -1,5 +1,5 @@
 <template>
-  <div class="Store-home__slider">
+  <div class="Store-home__slider" :data-color="activeSlide">
     <!-- Slider pagination -->
     <div class="Store-home__sliderNav">
       <button class="Store-home__sliderBullet" :class="{ 'active': index === activeSlide }" v-for="(product, index) in products" :key="product.index" @click="goToSlide(product.index)">
@@ -11,8 +11,7 @@
     <div class="Store-home__sliderWrap">
       <div class="Store-home__slides" :style="`transform: translateX(${sliderOffset}px)`">
         <div v-for="(product, index) in products" class="Store-home__slide" :class="{ 'active': index === activeSlide }" :key="product.index">
-          <strong>Slide n°{{ product.index }}</strong><br>
-          {{ product.name }}
+          <product-card :product="product"></product-card>
         </div>
       </div>
 
@@ -119,6 +118,22 @@
     &__slider {
       position: relative;
       height: 80%;
+      transition: background .8s;
+
+      &[data-color="0"] {
+        background: #00bd33; }
+
+      &[data-color="1"] {
+        background: #ffbb34; }
+
+      &[data-color="2"] {
+        background: #e84f2a; }
+
+      &[data-color="3"] {
+        background: #e45151; }
+
+      &[data-color="4"] {
+        background: #b11818; }
     }
 
     &__sliderNav {
@@ -155,7 +170,7 @@
 
       // Placeholder
       padding: 5rem;
-      background: #eee;
+      //background: #eee;
       border: 1px solid #ddd;
       text-align: center;
     }

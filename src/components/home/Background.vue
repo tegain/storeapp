@@ -1,11 +1,13 @@
 <template>
   <div class="Store-home__background">
-
+    {{ productColor }}
   </div>
 </template>
 
 <script>
-  export default {}
+  export default {
+    props: ['productColor']
+  }
 </script>
 
 <style lang="scss">

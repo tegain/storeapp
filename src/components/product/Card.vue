@@ -1,12 +1,25 @@
 <template>
   <div class="Store-product__card">
+    <div class="Store-product__share"></div>
+
     <img :src="product.picture.small" alt="" :width="product.picturesSizes.small" class="Store-product__picture">
-    <h2 class="Store-product__name">{{ product.name | capitalize }}</h2>
+    <div class="Store-product__content">
+      <h2 class="Store-product__name">{{ product.name | capitalize }}</h2>
+      <select class="Store-product__quantity">
+        <option :value="n" v-for="n in 10">{{ n }}</option>
+      </select>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
+    data () {
+      return {
+        quantity: 1
+      }
+    },
+
     props: ['product'],
 
     filters: {
@@ -15,6 +28,24 @@
         value = value.toString()
         return value.charAt(0).toUpperCase() + value.slice(1)
       }
+    },
+
+    methods: {
+      initProductCard () {
+        let $dropdown = document.querySelector('.Store-product__quantity')
+
+        $dropdown.addEventListener('touchstart touchmove touchend', (e) => {
+          e.stopPropagation()
+        })
+      },
+
+      updateQuantity () {
+        // let $dropdown = document.querySelector('.Store-product__quantity')
+      }
+    },
+
+    mounted () {
+      this.initProductCard()
     }
   }
 </script>
@@ -24,6 +55,8 @@
 
     &__card {
       padding: 0 1.5rem 1.5rem;
+      position: relative;
+      z-index: 2;
     }
 
     &__picture {

@@ -89,7 +89,7 @@
   &__sliderWrap {
     position: relative;
     overflow: hidden;
-    padding-top: 25vh;
+    padding-top: 11rem;
     height: 100%;
 
     &:before {
@@ -98,7 +98,7 @@
       top: 5rem;
       left: 0;
       width: 100%;
-      height: 25vh;
+      height: 15rem;
       transform: skewY(-13deg);
       transform-origin: 100% 0;
       background: #fff;

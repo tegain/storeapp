@@ -1,5 +1,5 @@
 <template>
-  <div class="Store-home__slider" :data-color="activeSlide">
+  <div class="Store-home__slider" :data-color="activeSlide" :data-test="setBackgroundGradient(activeSlide)">
     <!-- Slider pagination -->
     <div class="Store-home__sliderNav">
       <button class="Store-home__sliderBullet" :class="{ 'active': index === activeSlide }" v-for="(product, index) in products" :key="product.index" @click="goToSlide(product.index)">
@@ -97,6 +97,23 @@
           }
           e.preventDefault()
         }, false)
+      },
+
+      getColorFromCSS (darkColor, lightColor) {
+        const Styles = getComputedStyle(document.body)
+        return [Styles.getPropertyValue(darkColor).trim(), Styles.getPropertyValue(lightColor).trim()]
+      },
+
+      setBackgroundGradient (activeSlide) {
+        let colors = []
+
+        colors.push(this.getColorFromCSS('--col-blue-dark', '--col-blue-light'))
+        colors.push(this.getColorFromCSS('--col-purple-dark', '--col-purple-light'))
+        colors.push(this.getColorFromCSS('--col-pink-dark', '--col-pink-light'))
+        colors.push(this.getColorFromCSS('--col-red-dark', '--col-red-light'))
+        colors.push(this.getColorFromCSS('--col-orange-dark', '--col-orange-light'))
+
+        return `background: linear-gradient(to right, ${colors[activeSlide][0]} 0%, ${colors[activeSlide][1]} 100%)`
       }
     },
 
@@ -113,27 +130,66 @@
 </script>
 
 <style lang="scss">
+  @import '../../scss/vars';
+
   .Store-home {
 
     &__slider {
       position: relative;
       height: 80%;
-      transition: background .8s;
+      transition: background 2s;
+      // transition-delay: .8s;
+
+      &:before {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+      }
 
       &[data-color="0"] {
-        background: #00bd33; }
+        background: $col-blue-dark;
+
+        &:before {
+          @include gradientTransparent($col-blue-light, to left)
+        }
+      }
 
       &[data-color="1"] {
-        background: #ffbb34; }
+        background: $col-purple-dark;
+
+        &:before {
+          @include gradientTransparent($col-purple-light, to left)
+        }
+      }
 
       &[data-color="2"] {
-        background: #e84f2a; }
+        background: $col-pink-dark;
+
+        &:before {
+          @include gradientTransparent($col-pink-light, to left)
+        }
+      }
 
       &[data-color="3"] {
-        background: #e45151; }
+        background: $col-red-dark;
+
+        &:before {
+          @include gradientTransparent($col-red-light, to left)
+        }
+      }
 
       &[data-color="4"] {
-        background: #b11818; }
+        background: $col-orange-dark;
+
+        &:before {
+          @include gradientTransparent($col-orange-light, to left)
+        }
+      }
     }
 
     &__sliderNav {
@@ -170,8 +226,8 @@
 
       // Placeholder
       padding: 5rem;
-      //background: #eee;
-      border: 1px solid #ddd;
+      // background: #eee;
+      // border: 1px solid #ddd;
       text-align: center;
     }
   }

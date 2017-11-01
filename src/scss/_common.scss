@@ -1,13 +1,17 @@
-/**
- * VARS
- */
-
 :root {
-  --col-green: #00bd33;
-  --col-orange-light: #ffbb34;
-  --col-orange-dark: #e84f2a;
-  --col-red-light: #e45151;
-  --col-red-dark: #b11818;
+  --col-green-light: $col-green-light;
+  --col-green-medium: $col-green-medium;
+  --col-green-dark: $col-green-dark;
+  --col-blue-light: $col-blue-light;
+  --col-blue-dark: $col-blue-dark;
+  --col-purple-light: $col-purple-light;
+  --col-purple-dark: $col-purple-dark;
+  --col-pink-light: $col-pink-light;
+  --col-pink-dark: $col-pink-dark;
+  --col-orange-light: $col-orange-light;
+  --col-orange-dark: $col-orange-dark;
+  --col-red-light: $col-red-light;
+  --col-red-dark: $col-red-dark;
 }
 
 

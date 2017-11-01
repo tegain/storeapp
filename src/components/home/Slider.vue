@@ -97,23 +97,6 @@
           }
           e.preventDefault()
         }, false)
-      },
-
-      getColorFromCSS (darkColor, lightColor) {
-        const Styles = getComputedStyle(document.body)
-        return [Styles.getPropertyValue(darkColor).trim(), Styles.getPropertyValue(lightColor).trim()]
-      },
-
-      setBackgroundGradient (activeSlide) {
-        let colors = []
-
-        colors.push(this.getColorFromCSS('--col-blue-dark', '--col-blue-light'))
-        colors.push(this.getColorFromCSS('--col-purple-dark', '--col-purple-light'))
-        colors.push(this.getColorFromCSS('--col-pink-dark', '--col-pink-light'))
-        colors.push(this.getColorFromCSS('--col-red-dark', '--col-red-light'))
-        colors.push(this.getColorFromCSS('--col-orange-dark', '--col-orange-light'))
-
-        return `background: linear-gradient(to right, ${colors[activeSlide][0]} 0%, ${colors[activeSlide][1]} 100%)`
       }
     },
 

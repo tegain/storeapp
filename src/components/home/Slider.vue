@@ -76,23 +76,45 @@
       },
 
       onTouchEvents () {
+        let triggerOffset = 60 // next/prev navigation triggers when user drags more than this amount
+        let touchClasses = ['is-moving', 'has-moved'] // Define classes for moving events
         let $slider = document.querySelector(this.slider)
+        let $slide = document.querySelector(this.slide)
+        let slideWidth = $slide.getBoundingClientRect().width
         let startx
         let touchobj = null
 
         $slider.addEventListener('touchstart', (e) => {
+          $slider.classList.remove(touchClasses[0], touchClasses[1])
           touchobj = e.changedTouches[0]
           startx = parseInt(touchobj.clientX)
           e.preventDefault()
         }, false)
 
-        $slider.addEventListener('touchend', (e) => {
+        $slider.addEventListener('touchmove', (e) => {
+          // Add 'is-moving' class to slider
+          $slider.classList.add(touchClasses[0])
           touchobj = e.changedTouches[0]
           let dist = parseInt(touchobj.clientX) - startx
 
-          if (dist < -60) {
+          // Live dragging if drag distance is below triggering offset, and below total slider width
+          if ((dist > -triggerOffset && dist < 0) || (dist < triggerOffset && dist > 0)) {
+            if ((this.sliderOffset + dist) < 0 && (this.sliderOffset + dist) > (-slideWidth * (this.products.length - 1))) {
+              this.sliderOffset = this.sliderOffset + dist
+            }
+          }
+
+          e.preventDefault()
+        }, false)
+
+        $slider.addEventListener('touchend', (e) => {
+          $slider.classList.replace(touchClasses[0], touchClasses[1])
+          touchobj = e.changedTouches[0]
+          let dist = parseInt(touchobj.clientX) - startx
+
+          if (dist < -triggerOffset) {
             this.goToNextSlide()
-          } else if (dist > 60) {
+          } else if (dist > triggerOffset) {
             this.goToPrevSlide()
           }
           e.preventDefault()
@@ -119,7 +141,7 @@
 
     &__slider {
       position: relative;
-      height: 80%;
+      height: 100%;
       padding-top: 2.75rem;
       transition: background 2s;
 
@@ -176,8 +198,9 @@
     }
 
     &__sliderNav {
-      position: relative;
+      position: absolute;
       padding: .5rem;
+      padding-top: 4rem;
       z-index: 2;
       top: 0;
       left: 0;
@@ -186,14 +209,14 @@
     }
 
     &__sliderBullet {
-      margin: 0 .15rem;
+      margin: 0 .25rem;
       padding: 0;
       border: none;
-      width: .75rem;
-      height: .75rem;
+      width: .5rem;
+      height: .5rem;
       border-radius: 50%;
       background: #fff;
-      opacity: .4;
+      opacity: .3;
       text-indent: -999em;
       transition: opacity .4s;
 
@@ -203,12 +226,27 @@
     }
 
     &__sliderWrap {
+      position: relative;
       overflow: hidden;
+      padding-top: 25vh;
       height: 100%;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        width: 100%;
+        height: 25vh;
+        transform: skewY(-13deg);
+        transform-origin: 100% 0;
+        background: #fff;
+      }
     }
 
     &__slides {
       position: relative;
+      background: #fff;
       transition: transform .5s;
       height: 100%;
     }
@@ -222,7 +260,6 @@
       // Placeholder
       padding: 5rem;
       // background: #eee;
-      // border: 1px solid #ddd;
       text-align: center;
     }
   }

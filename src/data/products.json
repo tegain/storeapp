@@ -4,14 +4,19 @@
     "index": 0,
     "guid": "28bb919c-0952-4468-a2d1-ae6e778fcc9b",
     "description": "Proident aute dolor proident sint cillum veniam velit. Non cupidatat ad ea mollit qui aute magna nisi sunt. Et consectetur labore velit nisi reprehenderit duis nisi esse velit anim ad pariatur anim officia. Qui reprehenderit Lorem ad velit nulla quis adipisicing. Est reprehenderit nulla consequat ut mollit deserunt culpa labore id labore nulla incididunt occaecat ut. Minim veniam labore nostrud culpa aliqua laboris magna amet sunt reprehenderit consequat fugiat.",
-    "quantity": "[50,100,150,200]",
+    "quantity": [50,100,150,200],
     "stock": 181,
     "picture": {
-      "small": "http://placehold.it/240x240?14863",
-      "medium": "http://placehold.it/320x320?38937",
-      "large": "http://placehold.it/640x640?16794"
+      "small": "/static/product-blue__small.png",
+      "medium": "/static/product-blue__medium.png",
+      "large": "/static/product-blue__large.png"
     },
-    "price": "59.09",
+    "picturesSizes": {
+      "small": 320,
+      "medium": 640,
+      "large": 1000
+    },
+    "price": "5909",
     "name": "laborum velit laboris"
   },
   {
@@ -19,14 +24,19 @@
     "index": 1,
     "guid": "14089a5d-5c7a-437b-a1cb-2a6c32112b49",
     "description": "Adipisicing eu laborum adipisicing cupidatat occaecat excepteur. Commodo nostrud quis fugiat exercitation reprehenderit do qui cillum. Sit eu aute consequat esse veniam officia. Nulla labore qui sint voluptate dolore adipisicing dolore ex commodo sint eiusmod aliquip est Lorem. Commodo duis laborum id irure sunt duis eiusmod.",
-    "quantity": "[50,100,150,200]",
+    "quantity": [50,100,150,200],
     "stock": 336,
     "picture": {
-      "small": "http://placehold.it/240x240?16573",
-      "medium": "http://placehold.it/320x320?26986",
-      "large": "http://placehold.it/640x640?30969"
+      "small": "/static/product-purple__small.png",
+      "medium": "/static/product-purple__medium.png",
+      "large": "/static/product-purple__large.png"
     },
-    "price": "146.56",
+    "picturesSizes": {
+      "small": 320,
+      "medium": 640,
+      "large": 1000
+    },
+    "price": "14656",
     "name": "adipisicing aliquip duis"
   },
   {
@@ -34,14 +44,19 @@
     "index": 2,
     "guid": "a4c34821-553a-4582-a5d2-09444d014d84",
     "description": "Culpa qui et cillum exercitation sit. Elit esse sunt laborum aliquip nisi culpa mollit exercitation consequat consequat est ipsum sint. Cupidatat ullamco non nulla laborum tempor adipisicing tempor ad ullamco quis cupidatat enim occaecat. Cupidatat aute ex veniam sint esse sunt incididunt anim amet ex exercitation sunt mollit. Dolor dolor dolore pariatur laborum mollit fugiat cupidatat amet voluptate laborum sit consectetur.",
-    "quantity": "[50,100,150,200]",
+    "quantity": [50,100,150,200],
     "stock": 8,
     "picture": {
-      "small": "http://placehold.it/240x240?13174",
-      "medium": "http://placehold.it/320x320?40929",
-      "large": "http://placehold.it/640x640?5873"
+      "small": "/static/product-pink__small.png",
+      "medium": "/static/product-pink__medium.png",
+      "large": "/static/product-pink__large.png"
     },
-    "price": "110.11",
+    "picturesSizes": {
+      "small": 320,
+      "medium": 640,
+      "large": 1000
+    },
+    "price": "11011",
     "name": "exercitation ipsum adipisicing"
   },
   {
@@ -49,14 +64,19 @@
     "index": 3,
     "guid": "b9f97f10-7ee8-400f-9130-bc238d71ceae",
     "description": "Veniam sunt aute et anim dolore id ut. Laborum labore eu tempor minim velit. Et fugiat fugiat occaecat labore proident anim ipsum cupidatat qui magna exercitation eiusmod ad. Ut voluptate enim esse cupidatat elit. Quis ipsum mollit consequat labore. Aute cupidatat nisi voluptate culpa dolore excepteur consequat culpa ex. Proident aliquip laborum id adipisicing ullamco magna cillum mollit nulla veniam est do excepteur ad.",
-    "quantity": "[50,100,150,200]",
+    "quantity": [50,100,150,200],
     "stock": 151,
     "picture": {
-      "small": "http://placehold.it/240x240?28454",
-      "medium": "http://placehold.it/320x320?46976",
-      "large": "http://placehold.it/640x640?16372"
+      "small": "/static/product-red__small.png",
+      "medium": "/static/product-red__medium.png",
+      "large": "/static/product-red__large.png"
     },
-    "price": "138.01",
+    "picturesSizes": {
+      "small": 320,
+      "medium": 640,
+      "large": 1000
+    },
+    "price": "13801",
     "name": "non eiusmod cupidatat"
   },
   {
@@ -64,14 +84,19 @@
     "index": 4,
     "guid": "5b0f6b7d-3b19-42d6-a7d3-1859d1314548",
     "description": "Est excepteur voluptate sit exercitation aliquip veniam qui fugiat ullamco eu reprehenderit qui mollit voluptate. Labore nulla veniam cillum aliquip et esse ipsum labore pariatur consequat dolor anim duis officia. Ipsum reprehenderit sint officia cupidatat enim velit consequat. Voluptate reprehenderit Lorem nostrud mollit do aliqua ut esse. Laborum commodo Lorem deserunt ut nostrud esse et elit dolor consectetur occaecat ad.",
-    "quantity": "[50,100,150,200]",
+    "quantity": [50,100,150,200],
     "stock": 471,
     "picture": {
-      "small": "http://placehold.it/240x240?17495",
-      "medium": "http://placehold.it/320x320?20383",
-      "large": "http://placehold.it/640x640?16847"
+      "small": "/static/product-orange__small.png",
+      "medium": "./assets/product-orange__medium.png",
+      "large": "./assets/product-orange__large.png"
     },
-    "price": "128.19",
+    "picturesSizes": {
+      "small": 320,
+      "medium": 640,
+      "large": 1000
+    },
+    "price": "12819",
     "name": "occaecat irure enim"
   }
 ]

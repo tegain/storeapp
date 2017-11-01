@@ -1,5 +1,5 @@
 <template>
-  <div class="Store-home__slider" :data-color="activeSlide" :data-test="setBackgroundGradient(activeSlide)">
+  <div class="Store-home__slider" :data-color="activeSlide">
     <!-- Slider pagination -->
     <div class="Store-home__sliderNav">
       <button class="Store-home__sliderBullet" :class="{ 'active': index === activeSlide }" v-for="(product, index) in products" :key="product.index" @click="goToSlide(product.index)">
@@ -120,8 +120,8 @@
     &__slider {
       position: relative;
       height: 80%;
+      padding-top: 2.75rem;
       transition: background 2s;
-      // transition-delay: .8s;
 
       &:before {
         content: "";
@@ -176,7 +176,7 @@
     }
 
     &__sliderNav {
-      position: absolute;
+      position: relative;
       padding: .5rem;
       z-index: 2;
       top: 0;
@@ -186,8 +186,20 @@
     }
 
     &__sliderBullet {
-      margin: 0 .25rem;
-      padding: .25rem;
+      margin: 0 .15rem;
+      padding: 0;
+      border: none;
+      width: .75rem;
+      height: .75rem;
+      border-radius: 50%;
+      background: #fff;
+      opacity: .4;
+      text-indent: -999em;
+      transition: opacity .4s;
+
+      &.active {
+        opacity: 1;
+      }
     }
 
     &__sliderWrap {

@@ -1,7 +1,5 @@
 <template>
   <div class="Store-content Store-home" data-template="home">
-    <home-background></home-background>
-
     <div class="Store-content__inner Store-home__inner">
       <home-slider></home-slider>
     </div>

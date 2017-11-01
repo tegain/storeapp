@@ -9,6 +9,8 @@
         <option :value="n" v-for="n in 10">{{ n }}</option>
       </select>
     </div>
+
+    <add-to-cart :product="product" :quantity="quantity"></add-to-cart>
   </div>
 </template>
 

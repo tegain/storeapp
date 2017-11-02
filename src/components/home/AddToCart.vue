@@ -1,6 +1,6 @@
 <template>
   <div class="Store-addToCart">
-    {{ (product.price / 10) * quantity }}
+    {{ (product.price / 100) * quantity }}
   </div>
 </template>
 

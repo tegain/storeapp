@@ -5,7 +5,7 @@
     <img :src="product.picture.small" alt="" :width="product.picturesSizes.small" class="Store-product__picture">
     <div class="Store-product__content">
       <h2 class="Store-product__name">{{ product.name | capitalize }}</h2>
-      <select class="Store-product__quantity">
+      <select class="Store-product__quantity" v-model="quantity">
         <option :value="n" v-for="n in 10">{{ n }}</option>
       </select>
     </div>

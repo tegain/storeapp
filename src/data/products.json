@@ -5,7 +5,7 @@
     "guid": "28bb919c-0952-4468-a2d1-ae6e778fcc9b",
     "description": "Proident aute dolor proident sint cillum veniam velit. Non cupidatat ad ea mollit qui aute magna nisi sunt. Et consectetur labore velit nisi reprehenderit duis nisi esse velit anim ad pariatur anim officia. Qui reprehenderit Lorem ad velit nulla quis adipisicing. Est reprehenderit nulla consequat ut mollit deserunt culpa labore id labore nulla incididunt occaecat ut. Minim veniam labore nostrud culpa aliqua laboris magna amet sunt reprehenderit consequat fugiat.",
     "quantity": [50,100,150,200],
-    "stock": 181,
+    "stock": 0,
     "picture": {
       "small": "/static/product-blue__small.png",
       "medium": "/static/product-blue__medium.png",
@@ -16,7 +16,7 @@
       "medium": 640,
       "large": 1000
     },
-    "price": "5909",
+    "price": "5999",
     "name": "laborum velit laboris"
   },
   {
@@ -36,7 +36,7 @@
       "medium": 640,
       "large": 1000
     },
-    "price": "14656",
+    "price": "14650",
     "name": "adipisicing aliquip duis"
   },
   {
@@ -56,7 +56,7 @@
       "medium": 640,
       "large": 1000
     },
-    "price": "11011",
+    "price": "11050",
     "name": "exercitation ipsum adipisicing"
   },
   {
@@ -76,7 +76,7 @@
       "medium": 640,
       "large": 1000
     },
-    "price": "13801",
+    "price": "13899",
     "name": "non eiusmod cupidatat"
   },
   {
@@ -96,7 +96,7 @@
       "medium": 640,
       "large": 1000
     },
-    "price": "12819",
+    "price": "12850",
     "name": "occaecat irure enim"
   }
 ]

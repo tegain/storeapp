@@ -5,9 +5,13 @@
     <img :src="product.picture.small" alt="" :width="product.picturesSizes.small" class="Store-product__picture">
     <div class="Store-product__content">
       <h2 class="Store-product__name">{{ product.name | capitalize }}</h2>
+      <span class="Store-product__stock" :class="{ 'inStock': isInStock, 'outOfStock': !isInStock }">
+        <em v-if="isInStock">In stock</em>
+        <em v-else>Out of stock</em>
+      </span>
 
       <select class="Store-product__quantity" v-model="quantity">
-        <option :value="n" v-for="n in 10">{{ n }}</option>
+        <option :value="n" v-for="n in 5">{{ n }}</option>
       </select>
 
       <div class="Store-product__description">{{ product.description }}</div>
@@ -21,7 +25,8 @@
   export default {
     data () {
       return {
-        quantity: 1
+        quantity: 1,
+        isInStock: (this.product.stock > 0)
       }
     },
 
@@ -42,6 +47,10 @@
         $dropdown.addEventListener('touchstart touchmove touchend', (e) => {
           e.stopPropagation()
         })
+      },
+
+      updateStockMsg () {
+        this.stockMsg = (this.product.stock > 0) ? 'In stock' : 'Out of stock'
       }
     },
 
@@ -72,7 +81,31 @@
 
     &__name {
       padding-right: 5rem;
+      margin-bottom: .25rem;
       font-size: 1.25rem;
+    }
+
+    &__stock {
+      display: block;
+      margin-bottom: 1rem;
+      font-size: .75rem;
+
+      em {
+        &:before {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          margin-right: .25rem;
+          display: inline-block;
+          vertical-align: baseline;
+          background: var(--col-green-medium);
+        }
+      }
+
+      &.outOfStock em:before {
+        background: var(--col-red-light);
+      }
     }
 
     &__quantity {

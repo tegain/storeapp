@@ -12,7 +12,11 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+
+  mounted () {
+    document.querySelector('#store-wrapper').style.height = window.innerHeight + 'px'
+  }
 }
 </script>
 

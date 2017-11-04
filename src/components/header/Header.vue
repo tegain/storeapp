@@ -7,3 +7,7 @@
     <header-cart></header-cart>
   </header>
 </template>
+
+<script>
+  export default {}
+</script>

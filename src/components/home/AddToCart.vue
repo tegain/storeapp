@@ -4,7 +4,7 @@
       {{ totalPrice }} €
     </span>
 
-    <button class="Store-addToCart__button" :disabled="!isInStock">Add to cart</button>
+    <button class="Store-addToCart__button" :disabled="!isInStock" @click="addProductToCart">Add to cart</button>
   </div>
 </template>
 
@@ -41,6 +41,10 @@
         // this.totalPrice = `${priceInt}${priceDecimals}`
 
         this.totalPrice = price
+      },
+
+      addProductToCart () {
+        console.log(`Le produit ${this.product.name} est bien ajouté au panier, pour un prix total de ${this.totalPrice} €.`)
       }
     },
 

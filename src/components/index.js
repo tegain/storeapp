@@ -1,4 +1,6 @@
 import StoreHeader from '@/components/header/Header'
+import StoreNav from '@/components/navigation/Navigation'
+
 import HeaderCart from '@/components/header/HeaderCart'
 import HeaderNavBtn from '@/components/header/HeaderNavBtn'
 import HomeSlider from '@/components/home/Slider'
@@ -8,6 +10,7 @@ import ProductCard from '@/components/product/Card'
 const Components = [
   // Global layout
   { name: 'store-header', template: StoreHeader },
+  { name: 'store-nav', template: StoreNav },
 
   // Header
   { name: 'header-cart', template: HeaderCart },

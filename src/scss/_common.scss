@@ -43,13 +43,57 @@ body {
 
 .Store {
 
+  &-svgDefinitions {
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  &-navigation {
+
+  }
+
   &-wrapper {
     height: 100vh;
+    z-index: 1;
     position: relative;
+    transition: transform .5s ease-in;
+    overflow: hidden;
+
+    &__overlay {
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(#fff, .25);
+      transition-duration: .5s;
+    }
   }
 
   &-content {
     position: relative;
     height: 100%;
+  }
+
+  /**
+   * Navigation visible
+   */
+  &-app.hasNavigation {
+    .Store-wrapper {
+      transform: translateX(75%) scale(.85);
+      transform-origin: 0 50%;
+      box-shadow: 0 0 4rem rgba(#666, .4);
+
+      // Add soft white overlay
+      &__overlay {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
   }
 }

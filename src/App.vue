@@ -2,7 +2,11 @@
 
 <template>
   <div id="app" class="Store-app">
+    <store-nav></store-nav>
+
     <div id="store-wrapper" class="Store-wrapper">
+      <div class="Store-wrapper__overlay"></div>
+
       <store-header></store-header>
 
       <router-view/>

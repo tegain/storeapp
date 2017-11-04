@@ -17,7 +17,7 @@
       <div class="Store-product__description">{{ product.description }}</div>
     </div>
 
-    <add-to-cart :product="product" :quantity="quantity"></add-to-cart>
+    <add-to-cart :product="product" :quantity="quantity" :isInStock="isInStock"></add-to-cart>
   </div>
 </template>
 
@@ -82,7 +82,7 @@
     &__name {
       padding-right: 5rem;
       margin-bottom: .25rem;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
     }
 
     &__stock {
@@ -99,7 +99,7 @@
           margin-right: .25rem;
           display: inline-block;
           vertical-align: baseline;
-          background: var(--col-green-medium);
+          background: var(--col-green-light);
         }
       }
 
@@ -118,6 +118,11 @@
       background: #fff;
       font-weight: 700;
       border-color: #ccc;
+    }
+
+    &__description {
+      font-size: .9rem;
+      line-height: 1.5;
     }
   }
 </style>

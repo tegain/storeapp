@@ -4,13 +4,13 @@
       {{ totalPrice }} €
     </span>
 
-    <button class="Store-addToCart__button">Add to cart</button>
+    <button class="Store-addToCart__button" :disabled="!isInStock">Add to cart</button>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['product', 'quantity'],
+    props: ['product', 'quantity', 'isInStock'],
 
     data () {
       return {
@@ -78,6 +78,17 @@
       border-radius: 1.5rem;
       color: #fff;
       box-shadow: 0 4px 20px -5px var(--col-green-medium);
+
+      &:hover,
+      &:active {
+        background: var(--col-green-light);
+      }
+
+      &[disabled],
+      &[disabled]:hover,
+      &[disabled]:active {
+        opacity: .35;
+      }
     }
   }
 </style>

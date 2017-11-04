@@ -79,8 +79,8 @@
         let triggerOffset = 50 // next/prev navigation triggers when user drags more than this amount
         let touchClasses = ['is-moving', 'has-moved'] // Define classes for moving events
         let $slider = document.querySelector(this.slider)
-        let $slide = document.querySelector(this.slide)
-        let slideWidth = $slide.getBoundingClientRect().width
+        // let $slide = document.querySelector(this.slide)
+        // let slideWidth = $slide.getBoundingClientRect().width
         let startx
         let touchobj = null
 
@@ -90,7 +90,7 @@
           startx = parseInt(touchobj.clientX)
         }, false)
 
-        $slider.addEventListener('touchmove', (e) => {
+        /* $slider.addEventListener('touchmove', (e) => {
           // Add 'is-moving' class to slider
           $slider.classList.add(touchClasses[0])
           touchobj = e.changedTouches[0]
@@ -104,7 +104,7 @@
           }
 
           e.preventDefault()
-        }, false)
+        }, false) */
 
         $slider.addEventListener('touchend', (e) => {
           $slider.classList.replace(touchClasses[0], touchClasses[1])

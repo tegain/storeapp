@@ -76,7 +76,7 @@
       },
 
       onTouchEvents () {
-        let triggerOffset = 30 // next/prev navigation triggers when user drags more than this amount
+        let triggerOffset = 50 // next/prev navigation triggers when user drags more than this amount
         let touchClasses = ['is-moving', 'has-moved'] // Define classes for moving events
         let $slider = document.querySelector(this.slider)
         let $slide = document.querySelector(this.slide)
@@ -97,8 +97,8 @@
           let dist = parseInt(touchobj.clientX) - startx
 
           // Live dragging if drag distance is below triggering offset, and below total slider width
-          if ((dist > -triggerOffset && dist < 0) || (dist < triggerOffset && dist > 0)) {
-            if ((this.sliderOffset + dist) < 0 && (this.sliderOffset + dist) > (-slideWidth * (this.products.length - 1))) {
+          if ((dist > -triggerOffset && dist < -10) || (dist < triggerOffset && dist > 10)) {
+            if ((this.sliderOffset + dist) < -10 && (this.sliderOffset + dist) > (-slideWidth * (this.products.length - 1))) {
               this.sliderOffset = this.sliderOffset + dist
             }
           }

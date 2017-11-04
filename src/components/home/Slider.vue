@@ -44,6 +44,7 @@
 
         $slider.style.width = slidesLgth * 100 + '%'
         $slider.style.transform = 'translateX(0)'
+        this.setActiveProduct(this.activeSlide)
       },
 
       goToSlide (slide) {
@@ -53,6 +54,7 @@
 
         this.activeSlide = slide
         this.sliderOffset = -(slideWidth * slideActiveIndex)
+        this.setActiveProduct(this.activeSlide)
       },
 
       goToPrevSlide () {
@@ -62,6 +64,7 @@
         if (this.activeSlide > 0) {
           this.activeSlide -= 1
           this.sliderOffset = -(slideWidth * this.activeSlide)
+          this.setActiveProduct(this.activeSlide)
         }
       },
 
@@ -72,7 +75,19 @@
         if ((this.activeSlide + 1) < this.products.length) {
           this.activeSlide += 1
           this.sliderOffset = -(slideWidth * this.activeSlide)
+          this.setActiveProduct(this.activeSlide)
         }
+      },
+
+      setActiveProduct (activeSlide) {
+        this.$store.dispatch('getSliderActiveProduct', { 'activeProduct': this.products[activeSlide] })
+          .then((success) => {
+            console.log(`Success response: ${success}`)
+            this.$store.dispatch('updateProductQuantity', { quantity: 1 })
+          })
+          .catch((error) => {
+            console.error(error)
+          })
       },
 
       onTouchEvents () {

@@ -17,19 +17,19 @@
         <em v-else>Out of stock</em>
       </span>
 
-        <select class="Store-product__quantity" v-model="quantity">
+        <select class="Store-product__quantity" v-model="productQuantity">
           <option :value="n" v-for="n in 5">{{ n }}</option>
         </select>
       </div>
 
       <div class="Store-product__description">{{ product.description }}</div>
     </div>
-
-    <add-to-cart :product="product" :quantity="quantity" :isInStock="isInStock"></add-to-cart>
   </div>
 </template>
 
 <script>
+  // import { mapGetters } from 'vuex'
+
   export default {
     data () {
       return {
@@ -65,12 +65,21 @@
       }
     },
 
+    computed: {
+      productQuantity: {
+        get () {
+          // return this.$store.state.cart.product[this.product.index].productQuantity
+          return this.$store.state.sliderActiveProductQuantity
+        },
+
+        set (quantity) {
+          this.$store.dispatch('updateProductQuantity', { quantity: quantity })
+        }
+      }
+    },
+
     mounted () {
       this.initProductCard()
-
-      window.addEventListener('scroll', (e) => {
-        console.log(e)
-      })
     }
   }
 </script>

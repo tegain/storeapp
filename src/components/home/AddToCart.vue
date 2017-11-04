@@ -1,50 +1,59 @@
 <template>
   <div class="Store-addToCart">
     <span class="Store-addToCart__price">
-      {{ totalPrice }} €
+      <!--{{ totalPrice }} €-->
+      <!--<span style="font-size: .5rem; line-height: 1; display: block;">{{ sliderActiveProduct.price }}</span>-->
+      {{ totalPrice }}
     </span>
 
-    <button class="Store-addToCart__button" :disabled="!isInStock" @click="addProductToCart">Add to cart</button>
+    <button class="Store-addToCart__button" :disabled="!sliderActiveProduct.stock > 0" @click="addProductToCart">Add to cart</button>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
-    props: ['product', 'quantity', 'isInStock'],
+    // props: ['product', 'quantity', 'isInStock'],
 
     data () {
       return {
-        totalPrice: this.product.price
+        product: null,
+        totalPrice: null,
+        isInStock: false
       }
     },
 
+    computed: {
+      ...mapGetters([
+        'sliderActiveProduct',
+        'productQuantity'
+      ])
+    },
+
     watch: {
-      quantity: function (newVal, oldVal) {
+      productQuantity: function (newVal, oldVal) {
         // console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+        this.updateTotalPrice()
+      },
+
+      sliderActiveProduct: function () {
         this.updateTotalPrice()
       }
     },
 
     methods: {
       updateTotalPrice () {
-        let quantity = this.quantity
-        let product = this.product
+        let quantity = this.productQuantity
+        let product = this.sliderActiveProduct
         let price = parseFloat((product.price / 100) * quantity).toFixed(2)
 
-        /**
-         * Parse price to separate decimals
-         * @type {string}
-         */
-        // let priceInt = price.split('.')[0]
-        // let priceDecimals = price.split('.')[1]
-        // priceDecimals = `<sup>${priceDecimals}</sup>`
-        // this.totalPrice = `${priceInt}${priceDecimals}`
-
+        console.log(product.price)
         this.totalPrice = price
       },
 
       addProductToCart () {
-        console.log(`Le produit ${this.product.name} est bien ajouté au panier, pour un prix total de ${this.totalPrice} €.`)
+        console.log(`Le produit "${this.sliderActiveProduct.name}" est bien ajouté au panier, pour un prix total de ${this.totalPrice} €.`)
       }
     },
 

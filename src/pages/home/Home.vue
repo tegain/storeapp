@@ -2,6 +2,8 @@
   <div class="Store-content Store-home" data-template="home">
     <div class="Store-content__inner Store-home__inner">
       <home-slider></home-slider>
+
+      <add-to-cart></add-to-cart>
     </div>
   </div>
 </template>

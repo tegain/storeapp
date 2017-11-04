@@ -5,7 +5,7 @@
     <img :src="product.picture.small" alt="" :width="product.picturesSizes.small" class="Store-product__picture">
 
     <div class="Store-product__backgroundText">
-      <strong>{{ product.name | keeplast }}</strong>
+      <strong>{{ product.name | keeplastword }}</strong>
     </div>
 
     <div class="Store-product__content">
@@ -47,7 +47,7 @@
         return value.charAt(0).toUpperCase() + value.slice(1)
       },
 
-      keeplast (value) {
+      keeplastword (value) {
         if (!value) return ''
         value = value.toString()
         value = value.split(' ')

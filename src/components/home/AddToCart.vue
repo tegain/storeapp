@@ -56,13 +56,13 @@
           product.addedQuantity = quantity
 
           let productToAdd = JSON.stringify(product)
-          console.log(productToAdd)
+          // console.log(productToAdd)
 
           this.$store.dispatch('addProductToCart', { product: productToAdd })
-            .then((success) => {
+            /* .then((success) => {
               console.log(success)
               console.log(this.cartInfos)
-            })
+            }) */
             .catch((error) => {
               console.error(error)
             })

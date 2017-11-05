@@ -24,11 +24,8 @@
 
   &__navBtn,
   &__cart {
-    // --- Because flex ---
-    // display: inline-block;
-    // vertical-align: middle;
-
     button {
+      position: relative;
       height: 100%;
       padding: .25rem .75rem;
       font-size: .75rem;
@@ -44,7 +41,6 @@
   &__navBtn {
     button {
       padding: 0;
-      position: relative;
       background: none;
       border: none;
       width: 40px;

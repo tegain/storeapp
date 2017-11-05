@@ -88,7 +88,7 @@
   .Store-product {
 
     &__card {
-      padding: 0 1.5rem 1.5rem;
+      padding: 0 1.5rem 5rem;
       height: 100%;
       position: relative;
       z-index: 2;
@@ -214,6 +214,13 @@
           opacity: 1;
         }
       }
+    }
+  }
+
+  .Store-home__slide.has-scrolledDown {
+    .Store-product__picture {
+      transform: scale(.75);
+      transform-origin: 0 100%;
     }
   }
 </style>

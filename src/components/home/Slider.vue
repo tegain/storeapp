@@ -1,7 +1,7 @@
 <template>
   <div class="Store-home__slider" :data-color="activeSlide">
     <!-- Slider pagination -->
-    <div class="Store-home__sliderNav">
+    <div class="Store-home__sliderNav" v-show="!slideScrolled">
       <button class="Store-home__sliderBullet" :class="{ 'active': index === activeSlide }" v-for="(product, index) in products" :key="product.index" @click="goToSlide(product.index)">
         {{ product.index }}
       </button>
@@ -10,15 +10,15 @@
     <!-- Slides -->
     <div class="Store-home__sliderWrap">
       <div class="Store-home__slides" :style="`transform: translateX(${sliderOffset}px)`">
-        <div v-for="(product, index) in products" class="Store-home__slide" :class="{ 'active': index === activeSlide }" :key="product.index">
+        <div v-for="(product, index) in products" class="Store-home__slide" :class="{ 'active': index === activeSlide, 'has-scrolledDown': slideScrolled }" :key="product.index">
           <product-card :product="product"></product-card>
         </div>
       </div>
 
-      <nav>
+      <!--<nav>
         <button @click="goToPrevSlide">Prev</button>
         <button @click="goToNextSlide">Next</button>
-      </nav>
+      </nav>-->
     </div>
   </div>
 </template>
@@ -33,7 +33,8 @@
         slider: '.Store-home__slides',
         slide: '.Store-home__slide',
         activeSlide: 0,
-        sliderOffset: 0
+        sliderOffset: 0,
+        slideScrolled: false
       }
     },
 
@@ -137,6 +138,7 @@
 
     mounted () {
       let hasTouchEvent = window.MSPointerEvent || window.PointerEvent || window.TouchEvent
+      let $sliderScrollWrapper = document.querySelector('.Store-home__sliderWrap')
 
       // Init slider
       this.initSlider()
@@ -144,6 +146,17 @@
       if (hasTouchEvent) {
         this.onTouchEvents()
       }
+
+      $sliderScrollWrapper.addEventListener('scroll', (e) => {
+        // console.log($sliderScrollWrapper.scrollTop)
+        if ($sliderScrollWrapper.scrollTop > 40) {
+          this.slideScrolled = true
+          // $sliderScrollWrapper.classList.add('has-scrolledDown')
+        } else {
+          this.slideScrolled = false
+          // $sliderScrollWrapper.classList.remove('has-scrolledDown')
+        }
+      })
     }
   }
 </script>

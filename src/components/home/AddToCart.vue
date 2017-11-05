@@ -1,12 +1,9 @@
 <template>
-  <div class="Store-addToCart">
-    <span class="Store-addToCart__price">
-      <!--{{ totalPrice }} €-->
-      <!--<span style="font-size: .5rem; line-height: 1; display: block;">{{ sliderActiveProduct.price }}</span>-->
-      {{ totalPrice }}
-    </span>
+  <div class="Store-addToCart" :class="{ 'isLoaded': isLoaded }">
+    <span class="Store-addToCart__price">{{ totalPrice }} €</span>
 
-    <button class="Store-addToCart__button" :disabled="!sliderActiveProduct.stock > 0" @click="addProductToCart">Add to cart</button>
+    <!-- See: https://stackoverflow.com/questions/46897776/vue-warn-error-in-render-function-typeerror-cannot-read-property-first-na -->
+    <button class="Store-addToCart__button" v-if="sliderActiveProduct" :disabled="!sliderActiveProduct.stock > 0" @click="addProductToCart">Add to cart</button>
   </div>
 </template>
 
@@ -14,13 +11,12 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    // props: ['product', 'quantity', 'isInStock'],
-
     data () {
       return {
         product: null,
         totalPrice: null,
-        isInStock: false
+        // isInStock: false,
+        isLoaded: false
       }
     },
 
@@ -48,17 +44,22 @@
         let product = this.sliderActiveProduct
         let price = parseFloat((product.price / 100) * quantity).toFixed(2)
 
-        console.log(product.price)
         this.totalPrice = price
       },
 
       addProductToCart () {
-        console.log(`Le produit "${this.sliderActiveProduct.name}" est bien ajouté au panier, pour un prix total de ${this.totalPrice} €.`)
+        if (this.sliderActiveProduct.stock > 0) {
+          console.log(`Le produit "${this.sliderActiveProduct.name}" est bien ajouté au panier, pour un prix total de ${this.totalPrice} €.`)
+        }
       }
     },
 
     mounted () {
       this.updateTotalPrice()
+
+      setTimeout(() => {
+        this.isLoaded = true
+      }, 500)
     }
   }
 </script>
@@ -73,10 +74,17 @@
     width: 100%;
     padding: 1rem 1.5rem;
     border-top: 1px solid #eee;
+    box-shadow: 0 0 24px rgba(#aaa, .5);
+    transform: translateY(100%);
+    transition: transform .4s;
 
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+
+    &.isLoaded {
+      transform: translateY(0);
+    }
 
     &__price {
       align-self: center;
@@ -91,6 +99,7 @@
       border-radius: 1.5rem;
       color: #fff;
       box-shadow: 0 4px 20px -5px var(--col-green-medium);
+      transition: opacity .4s;
 
       &:hover,
       &:active {

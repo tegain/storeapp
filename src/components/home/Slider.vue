@@ -83,7 +83,7 @@
       setActiveProduct (activeSlide) {
         this.$store.dispatch('getSliderActiveProduct', { 'activeProduct': this.products[activeSlide] })
           .then((success) => {
-            console.log(`Success response: ${success}`)
+            // console.log(`Success response: ${success}`)
             this.$store.dispatch('updateProductQuantity', { quantity: 1 })
           })
           .catch((error) => {

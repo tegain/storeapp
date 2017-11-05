@@ -23,7 +23,8 @@
     computed: {
       ...mapGetters([
         'sliderActiveProduct',
-        'productQuantity'
+        'productQuantity',
+        'cartInfos'
       ])
     },
 
@@ -49,7 +50,22 @@
 
       addProductToCart () {
         if (this.sliderActiveProduct.stock > 0) {
-          console.log(`Le produit "${this.sliderActiveProduct.name}" est bien ajouté au panier, pour un prix total de ${this.totalPrice} €.`)
+          let product = this.sliderActiveProduct
+          let quantity = this.productQuantity
+
+          product.addedQuantity = quantity
+
+          let productToAdd = JSON.stringify(product)
+          console.log(productToAdd)
+
+          this.$store.dispatch('addProductToCart', { product: productToAdd })
+            .then((success) => {
+              console.log(success)
+              console.log(this.cartInfos)
+            })
+            .catch((error) => {
+              console.error(error)
+            })
         }
       }
     },

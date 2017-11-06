@@ -6,6 +6,7 @@ import HeaderNavBtn from '@/components/header/HeaderNavBtn'
 import HomeSlider from '@/components/home/Slider'
 import AddToCart from '@/components/home/AddToCart'
 import ProductCard from '@/components/product/Card'
+import CartProductCard from '@/components/product/CartCard'
 
 const Components = [
   // Global layout
@@ -19,7 +20,10 @@ const Components = [
   // Home
   { name: 'home-slider', template: HomeSlider },
   { name: 'product-card', template: ProductCard },
-  { name: 'add-to-cart', template: AddToCart }
+  { name: 'add-to-cart', template: AddToCart },
+
+  // Cart
+  { name: 'cart-product-card', template: CartProductCard }
 ]
 
 export default Components

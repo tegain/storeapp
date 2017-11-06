@@ -13,9 +13,9 @@
         <h2 class="Store-product__name">{{ product.name | capitalize }}</h2>
 
         <span class="Store-product__stock" :class="{ 'inStock': isInStock, 'outOfStock': !isInStock }">
-        <em v-if="isInStock">In stock</em>
-        <em v-else>Out of stock</em>
-      </span>
+          <em v-if="isInStock">In stock</em>
+          <em v-else>Out of stock</em>
+        </span>
 
         <select class="Store-product__quantity" v-model="productQuantity">
           <option :value="n" v-for="n in 5">{{ n }}</option>
@@ -84,7 +84,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .Store-product {
 
     &__card {

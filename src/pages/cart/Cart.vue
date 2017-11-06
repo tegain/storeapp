@@ -1,8 +1,9 @@
 <template>
-  <div class="Store-content" data-template="cart">
-    Cart page content
-    <div class="item" v-for="(product, key) in cart" :key="product.index">
-      {{ product.name }}
+  <div class="Store-content Store-cart" data-template="cart">
+    <div class="Store-content__inner Store-cart__inner">
+      <div class="Store-cart__item" v-for="(product, key) in cart" :key="product.index">
+        <cart-product-card :product="product"></cart-product-card>
+      </div>
     </div>
   </div>
 </template>
@@ -23,3 +24,10 @@
     }, */
   }
 </script>
+
+<style lang="scss">
+  .Store-cart {
+    padding-top: 2.75rem;
+    background: #eee;
+  }
+</style>

@@ -8,8 +8,14 @@
     <div class="Store-product__content">
       <div class="Store-product__heading">
         <h2 class="Store-product__name">{{ product.name | capitalize }}</h2>
+        <strong class="Store-product__price">{{ price }} €</strong>
       </div>
+    </div>
 
+    <div class="Store-product__quantity">
+      <button class="Store-product__quantityRemove" @click.prevent="quantityRemove()">-</button>
+      <span class="Store-product__quantityLabel">{{ product.addedQuantity }}</span>
+      <button class="Store-product__quantityAdd" @click.prevent="quantityAdd()">+</button>
     </div>
   </div>
 </template>
@@ -20,7 +26,8 @@
   export default {
     data () {
       return {
-        quantity: 1
+        quantity: 1,
+        price: ''
       }
     },
 
@@ -35,7 +42,23 @@
     },
 
     methods: {
+      quantityAdd () {
+        if (this.product.addedQuantity < 5) {
+          this.product.addedQuantity++
+          this.$store.dispatch('addProductToCart', { product: JSON.stringify(this.product) })
+            .then((success) => {
+            })
+        }
+      },
 
+      quantityRemove () {
+        if (this.product.addedQuantity > 0) {
+          this.product.addedQuantity--
+          this.$store.dispatch('addProductToCart', { product: JSON.stringify(this.product) })
+            .then((success) => {
+            })
+        }
+      }
     },
 
     computed: {
@@ -49,6 +72,7 @@
     },
 
     mounted () {
+      this.price = parseFloat(this.product.price / 100).toFixed(2)
     }
   }
 </script>
@@ -81,16 +105,29 @@
     }
 
     &__content {
-      flex: 1 0 50%;
+      flex: 1 0 45%;
+      padding: 0 1rem;
     }
 
     &__quantity {
-      flex: 1 0 35%;
+      flex: 1 0 40%;
+      align-self: center;
       padding: .5rem .75rem;
-      border-radius: 1.5rem;
-      background: #fff;
       font-weight: 700;
-      border-color: #ccc;
+      text-align: center;
+
+      button {
+        padding: 0 .25rem;
+        font-size: 1.25rem;
+      }
+
+      span {
+        padding: .25rem .75rem;
+      }
+    }
+
+    &__price {
+      color: var(--col-green-medium);
     }
   }
 </style>

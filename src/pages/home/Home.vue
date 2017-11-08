@@ -9,7 +9,11 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    beforeCreate () {
+      document.body.className = 'Store-page__home'
+    }
+  }
 </script>
 
 <style lang="scss">

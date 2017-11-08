@@ -1,14 +1,13 @@
 <template>
   <div class="Store-product__card">
-    <div class="Store-product__share"></div>
 
-    <img :src="product.picture.small" alt="" :width="product.picturesSizes.small" class="Store-product__picture">
+    <div class="Store-product__picture">
+      <img :src="product.picture.small" alt="" :width="product.picturesSizes.small" class="">
+    </div>
 
     <div class="Store-product__content">
       <div class="Store-product__heading">
         <h2 class="Store-product__name">{{ product.name | capitalize }}</h2>
-
-
       </div>
 
     </div>
@@ -67,8 +66,12 @@
     }
 
     &__picture {
-      flex: 1 0 auto;
+      flex: 0 0 auto;
       width: 15%;
+
+      img {
+        max-width: 100%;
+      }
     }
 
     &__name {
@@ -77,11 +80,12 @@
       font-weight: 700;
     }
 
+    &__content {
+      flex: 1 0 50%;
+    }
+
     &__quantity {
-      position: absolute;
-      z-index: 2;
-      top: 0;
-      right: 0;
+      flex: 1 0 35%;
       padding: .5rem .75rem;
       border-radius: 1.5rem;
       background: #fff;

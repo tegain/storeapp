@@ -28,17 +28,18 @@
       cart () {
         return this.$store.getters.cartInfos
       }
-//      ...mapGetters([
-//        'cartInfos'
-//      ])
     },
 
     watch: {
-      cart: function (newVal, oldVal) {
-        // TODO
-        // Read this:
-        // - https://forum.vuejs.org/t/watch-for-update-of-deep-vuex-store-object/5318/2
-        // - https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats
+      cart: {
+        handler: function (newVal, oldVal) {
+          // TODO
+          // Read this:
+          // - https://forum.vuejs.org/t/watch-for-update-of-deep-vuex-store-object/5318/2
+          // - https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats
+          console.log('toto')
+        },
+        deep: true
       }
     },
 

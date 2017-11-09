@@ -61,16 +61,6 @@
       }
     },
 
-    computed: {
-      productQuantity: {
-        get () {
-        },
-
-        set (quantity) {
-        }
-      }
-    },
-
     mounted () {
       this.price = parseFloat(this.product.price / 100).toFixed(2)
     }

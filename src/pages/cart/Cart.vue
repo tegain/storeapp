@@ -37,7 +37,7 @@
           // Read this:
           // - https://forum.vuejs.org/t/watch-for-update-of-deep-vuex-store-object/5318/2
           // - https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats
-          console.log('toto')
+          this.calculateTotalPrice()
         },
         deep: true
       }

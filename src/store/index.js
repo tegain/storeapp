@@ -48,6 +48,28 @@ export default new Vuex.Store({
           reject(new Error(`Vous devez choisir une quantité minimum de 1`))
         }
       })
+    },
+
+    removeProductFromCart (context, data) {
+      let productToRemove = JSON.parse(data.product)
+      let checkIfProductExists = () => {
+        let cart = context.state.cart
+
+        for (let item of cart) {
+          if (item._id === productToRemove._id) {
+            return true
+          }
+        }
+      }
+
+      return new Promise((resolve, reject) => {
+        if (checkIfProductExists()) {
+          resolve(`Le produit ${productToRemove.name} est bien supprimé du panier.`)
+          context.commit('removeProductFromCart', productToRemove)
+        } else {
+          reject(new Error(`Il semble que le produit avec l'id ${productToRemove._id} n'existe pas dans votre panier actuellement.`))
+        }
+      })
     }
   },
 
@@ -76,6 +98,16 @@ export default new Vuex.Store({
       // Else, just push the product to array
       if (!alreadyExists) {
         state.cart.push(product)
+      }
+    },
+
+    removeProductFromCart (state, product) {
+      let cart = state.cart
+
+      for (let i = cart.length - 1; i >= 0; --i) {
+        if (cart[i]._id === product._id) {
+          cart.splice(i, 1)
+        }
       }
     }
   },

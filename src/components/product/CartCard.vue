@@ -211,21 +211,21 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--col-red-light);
+
       color: #fff;
 
       button {
-        background: none;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        height: 100%;
+        background: var(--col-red-light);
         border: none;
-        position: absolute;
-        right: 1.2rem;
         padding: .5rem;
-        top: 50%;
-        transform: translateY(-50%);
         transition: background .3s;
 
         &:hover {
-          background: rgba(#fff, .1);
+          background: var(--col-red-dark);
         }
       }
 
@@ -233,6 +233,7 @@
         fill: #fff;
         width: 1.5rem;
         height: 1.5rem;
+        margin-right: 1.15rem;
       }
     }
 
@@ -263,14 +264,13 @@
 
       button {
         border: none;
-        text-transform: uppercase;
         font-weight: 700;
         display: inline-block;
         margin: 1.5rem .75rem 0;
-        padding: .5rem;
+        padding: .5rem .75rem;
         border-radius: 3px;
         transition: background .3s;
-        font-size: .75rem;
+        font-size: .9rem;
       }
     }
 

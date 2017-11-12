@@ -5,6 +5,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="theme-color" content="#2c3e50">
     <title>storeapp</title>
   </head>
   <body>
@@ -21,5 +22,18 @@
     </svg>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+    <script>
+      /**
+       * Register Service Worker
+       */
+      (function () {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./service-worker.js', {scope: '/'})
+            .then(() => console.log('Service Worker registered successfully.'))
+            .catch(error => console.log('Service Worker registration failed:', error))
+        }
+      })()
+    </script>
   </body>
 </html>

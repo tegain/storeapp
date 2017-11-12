@@ -14,11 +14,6 @@
           <product-card :product="product"></product-card>
         </div>
       </div>
-
-      <!--<nav>
-        <button @click="goToPrevSlide">Prev</button>
-        <button @click="goToNextSlide">Next</button>
-      </nav>-->
     </div>
   </div>
 </template>
@@ -83,7 +78,6 @@
       setActiveProduct (activeSlide) {
         this.$store.dispatch('getSliderActiveProduct', { 'activeProduct': this.products[activeSlide] })
           .then((success) => {
-            // console.log(`Success response: ${success}`)
             this.$store.dispatch('updateProductQuantity', { quantity: 1 })
           })
           .catch((error) => {
@@ -95,8 +89,6 @@
         let triggerOffset = 50 // next/prev navigation triggers when user drags more than this amount
         let touchClasses = ['is-moving', 'has-moved'] // Define classes for moving events
         let $slider = document.querySelector(this.slider)
-        // let $slide = document.querySelector(this.slide)
-        // let slideWidth = $slide.getBoundingClientRect().width
         let startx
         let touchobj = null
 
@@ -105,22 +97,6 @@
           touchobj = e.changedTouches[0]
           startx = parseInt(touchobj.clientX)
         }, false)
-
-        /* $slider.addEventListener('touchmove', (e) => {
-          // Add 'is-moving' class to slider
-          $slider.classList.add(touchClasses[0])
-          touchobj = e.changedTouches[0]
-          let dist = parseInt(touchobj.clientX) - startx
-
-          // Live dragging if drag distance is below triggering offset, and below total slider width
-          if ((dist > -triggerOffset && dist < -10) || (dist < triggerOffset && dist > 10)) {
-            if ((this.sliderOffset + dist) < -10 && (this.sliderOffset + dist) > (-slideWidth * (this.products.length - 1))) {
-              this.sliderOffset = this.sliderOffset + dist
-            }
-          }
-
-          e.preventDefault()
-        }, false) */
 
         $slider.addEventListener('touchend', (e) => {
           $slider.classList.replace(touchClasses[0], touchClasses[1])
@@ -148,13 +124,10 @@
       }
 
       $sliderScrollWrapper.addEventListener('scroll', (e) => {
-        // console.log($sliderScrollWrapper.scrollTop)
         if ($sliderScrollWrapper.scrollTop > 40) {
           this.slideScrolled = true
-          // $sliderScrollWrapper.classList.add('has-scrolledDown')
         } else {
           this.slideScrolled = false
-          // $sliderScrollWrapper.classList.remove('has-scrolledDown')
         }
       })
     }

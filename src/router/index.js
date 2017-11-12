@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/home/Home'
-// import Product from '@/pages/product/Product'
 import Cart from '@/pages/cart/Cart'
 
 Vue.use(Router)

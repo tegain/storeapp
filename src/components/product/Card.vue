@@ -28,8 +28,6 @@
 </template>
 
 <script>
-  // import { mapGetters } from 'vuex'
-
   export default {
     data () {
       return {
@@ -68,7 +66,6 @@
     computed: {
       productQuantity: {
         get () {
-          // return this.$store.state.cart.product[this.product.index].productQuantity
           return this.$store.state.sliderActiveProductQuantity
         },
 

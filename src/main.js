@@ -12,6 +12,23 @@ Components.forEach((component) => {
 
 Vue.config.productionTip = false
 
+/**
+ * When user tries to access 'cart' view,
+ * Check for cart products in store.
+ * If there are none, redirects to home view.
+ */
+router.beforeEach((to, from, next) => {
+  if (to.name === 'Cart') {
+    if (store.state.cart.length === 0) {
+      next('/')
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

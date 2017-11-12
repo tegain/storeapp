@@ -30,7 +30,6 @@
 
     watch: {
       productQuantity: function (newVal, oldVal) {
-        // console.log('Prop changed: ', newVal, ' | was: ', oldVal)
         this.updateTotalPrice()
       },
 
@@ -56,13 +55,8 @@
           product.addedQuantity = quantity
 
           let productToAdd = JSON.stringify(product)
-          // console.log(productToAdd)
 
           this.$store.dispatch('addProductToCart', { product: productToAdd })
-            /* .then((success) => {
-              console.log(success)
-              console.log(this.cartInfos)
-            }) */
             .catch((error) => {
               console.error(error)
             })

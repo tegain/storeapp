@@ -3,22 +3,26 @@
     <div class="Store-content__inner Store-cart__inner">
       <div class="Store-cart__total">Total : {{ totalPrice }} €</div>
 
-      <div class="Store-cart__items">
+      <div class="Store-cart__items" v-if="cart.length > 0">
         <div class="Store-cart__item" v-for="(product, key) in cart" :key="product.index">
             <cart-product-card :product="product"></cart-product-card>
         </div>
       </div>
 
+      <div class="Store-cart__noItems" v-else>
+        <h2>Le panier est vide.</h2>
+
+        <router-link :to="{ name: 'Home' }" tag="button">Retour à l'accueil</router-link>
+      </div>
+
       <div class="Store-cart__checkout" :class="{ 'isLoaded': isLoaded }">
-        <button>Payer la commande</button>
+        <button :disabled="cartHasProducts">Payer la commande</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  // import { mapGetters } from 'vuex'
-
   export default {
     data () {
       return {
@@ -40,7 +44,6 @@
     watch: {
       cart: {
         handler: function (newVal, oldVal) {
-          // TODO
           // Read this:
           // - https://forum.vuejs.org/t/watch-for-update-of-deep-vuex-store-object/5318/2
           // - https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats
@@ -63,6 +66,10 @@
         })
 
         this.totalPrice = totalPrice / 100
+      },
+
+      cartHasProducts () {
+        return this.cartInfos.length > 0
       }
     },
 
@@ -116,6 +123,41 @@
 
       &.isLoaded {
         transform: translateY(0);
+      }
+
+      button {
+        border: none;
+        padding: .75rem 2.5rem;
+        background: var(--col-green-medium);
+        border-radius: 1.5rem;
+        color: #fff;
+        box-shadow: 0 4px 20px -5px var(--col-green-medium);
+        transition: opacity .4s;
+
+        &:hover,
+        &:active {
+          background: var(--col-green-light);
+        }
+
+        &[disabled],
+        &[disabled]:hover,
+        &[disabled]:active {
+          opacity: .35;
+        }
+      }
+    }
+
+    /**
+     * No items in cart
+     */
+    &__noItems {
+      height: 100%;
+      text-align: center;
+      padding-top: 5rem;
+
+      h2 {
+        margin-top: 0;
+        width: 100%;
       }
 
       button {

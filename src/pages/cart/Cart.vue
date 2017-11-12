@@ -15,8 +15,8 @@
         <router-link :to="{ name: 'Home' }" tag="button">Retour à l'accueil</router-link>
       </div>
 
-      <div class="Store-cart__checkout" :class="{ 'isLoaded': isLoaded }">
-        <button :disabled="cartHasProducts">Payer la commande</button>
+      <div class="Store-cart__checkout" :class="{ 'isLoaded': isLoaded && !emptyCart }">
+        <button :disabled="emptyCart">Payer la commande</button>
       </div>
     </div>
   </div>
@@ -27,6 +27,7 @@
     data () {
       return {
         totalPrice: 0,
+        emptyCart: false,
         isLoaded: false
       }
     },
@@ -55,6 +56,8 @@
 
     methods: {
       calculateTotalPrice () {
+        this.cartHasProducts()
+
         let cart = this.cart
         let totalPrice = 0
 
@@ -69,7 +72,7 @@
       },
 
       cartHasProducts () {
-        return this.cartInfos.length > 0
+        this.emptyCart = this.cart.length === 0
       }
     },
 

@@ -51,6 +51,10 @@
       font-size: 1.25em;
       text-decoration: none;
       color: inherit;
+
+      &:hover {
+        background: #fff;
+      }
     }
   }
 </style>

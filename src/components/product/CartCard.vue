@@ -1,6 +1,6 @@
 <template>
   <div class="Store-product__card" :data-id="product._id">
-    <div class="Store-product__inner">
+    <div class="Store-product__inner" :style="`transform: translateX(${cardOffset}px)`">
       <div class="Store-product__picture">
         <img :src="product.picture.small" alt="" :width="product.picturesSizes.small" class="">
       </div>
@@ -20,23 +20,35 @@
     </div>
 
     <div class="Store-product__delete">
-      <button @click.prevent="deleteProduct">
+      <button @click.prevent="openProductPopin">
         <svg class="Store-product__deleteIcon">
           <use xlink:href="#icon-delete"></use>
         </svg>
       </button>
     </div>
+
+    <div class="Store-product__popin" v-if="deletePopin" @click.stop.self="closeProductPopin">
+      <div class="Store-product__popinContent">
+        <p>
+          Supprimer le produit <br><strong>{{ product.name }}</strong> ?
+        </p>
+        <p>
+          <button class="Store-product__cancelBtn" @click.prevent="closeProductPopin">Annuler</button>
+          <button class="Store-product__deleteBtn" @click="deleteProduct">Supprimer</button>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  // import { mapGetters } from 'vuex'
-
   export default {
     data () {
       return {
         quantity: 1,
-        price: ''
+        price: '',
+        cardOffset: 0,
+        deletePopin: false
       }
     },
 
@@ -65,17 +77,21 @@
         }
       },
 
+      openProductPopin () {
+        this.deletePopin = true
+      },
+
+      closeProductPopin () {
+        this.deletePopin = false
+        this.cardOffset = 0
+      },
+
       deleteProduct () {
         let productToRemove = JSON.stringify(this.product)
 
-        /**
-         * TODO :
-         * - ADD TOUCH SLIDING EVENT TO TRIGGER DELETE
-         * - ADD CONFIRMATION WARNING BEFORE REMOVING
-         */
-
         this.$store.dispatch('removeProductFromCart', { product: productToRemove }).then((success) => {
-          console.log(success)
+          this.popinMessage = success
+          this.closeProductPopin()
         })
       },
 
@@ -84,8 +100,6 @@
         let touchClasses = ['is-moving', 'has-moved'] // Define classes for moving events
         let $card = document.querySelector(`[data-id="${this.product._id}"]`)
         let $cardContent = $card.querySelector('.Store-product__inner')
-        // let $slide = document.querySelector(this.slide)
-        // let slideWidth = $slide.getBoundingClientRect().width
         let startx
         let touchobj = null
 
@@ -101,9 +115,9 @@
           let dist = parseInt(touchobj.clientX) - startx
 
           if (dist < -triggerOffset) {
-            $cardContent.style.transform = `translateX(-${triggerOffset}px)`
+            this.cardOffset = -triggerOffset
           } else {
-            $cardContent.style.transform = 'translateX(0)'
+            this.cardOffset = 0
           }
         }, false)
       }
@@ -128,38 +142,6 @@
       position: relative;
     }
 
-    &__delete {
-      position: absolute;
-      z-index: 0;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--col-red-light);
-      color: #fff;
-
-      button {
-        background: none;
-        border: none;
-        position: absolute;
-        right: 1.2rem;
-        padding: .5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        transition: background .3s;
-
-        &:hover {
-          background: rgba(#fff, .1);
-        }
-      }
-
-      &Icon {
-        fill: #fff;
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-    }
-
     &__inner {
       padding: 1rem .5rem;
       border-bottom: 1px solid #ddd;
@@ -169,10 +151,12 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
-      transition: background .4s, transform .3s;
+      border-right: 3px solid #eee;
+      transition: background .4s, transform .3s, border .4s;
 
       &:hover {
         background: #fff;
+        border-right-color: var(--col-red-light);
       }
     }
 
@@ -215,6 +199,97 @@
 
     &__price {
       color: var(--col-green-medium);
+    }
+
+    /**
+     * Delete product
+     */
+    &__delete {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--col-red-light);
+      color: #fff;
+
+      button {
+        background: none;
+        border: none;
+        position: absolute;
+        right: 1.2rem;
+        padding: .5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: background .3s;
+
+        &:hover {
+          background: rgba(#fff, .1);
+        }
+      }
+
+      &Icon {
+        fill: #fff;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    &__popin {
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(#000, .1);
+
+
+      &Content {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        border-radius: 3px;
+        transition: opacity .25s;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 1rem 4rem rgba(#666, .25);
+      }
+
+      button {
+        border: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        display: inline-block;
+        margin: 1.5rem .75rem 0;
+        padding: .5rem;
+        border-radius: 3px;
+        transition: background .3s;
+        font-size: .75rem;
+      }
+    }
+
+    &__deleteBtn {
+      background: var(--col-red-light);
+      color: #fff;
+
+      &:hover {
+        background: var(--col-red-dark);
+      }
+    }
+
+    &__cancelBtn {
+      background: none;
+      color: #999;
+
+      &:hover {
+        background: #efefef;
+      }
     }
   }
 </style>

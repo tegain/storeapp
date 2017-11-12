@@ -78,6 +78,9 @@ body {
    * Navigation visible
    */
   &-app.hasNavigation {
+    width: 100vw;
+    overflow: hidden;
+
     .Store-wrapper {
       transform: translateX(75%) scale(.85);
       transform-origin: 0 50%;

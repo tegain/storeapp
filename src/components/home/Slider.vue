@@ -1,5 +1,5 @@
 <template>
-  <div class="Store-home__slider" :data-color="activeSlide">
+  <div class="Store-home__slider" :data-color="activeSlide" v-if="products">
     <!-- Slider pagination -->
     <div class="Store-home__sliderNav" v-show="!slideScrolled">
       <button class="Store-home__sliderBullet" :class="{ 'active': index === activeSlide }" v-for="(product, index) in products" :key="product.index" @click="goToSlide(product.index)">
@@ -19,18 +19,24 @@
 </template>
 
 <script>
-  import Products from '@/data/products.json'
+  import { mapGetters } from 'vuex'
 
   export default {
     data () {
       return {
-        products: Products,
+        products: null,
         slider: '.Store-home__slides',
         slide: '.Store-home__slide',
         activeSlide: 0,
         sliderOffset: 0,
         slideScrolled: false
       }
+    },
+
+    computed: {
+      ...mapGetters([
+        'appProducts'
+      ])
     },
 
     methods: {
@@ -112,12 +118,16 @@
       }
     },
 
-    mounted () {
-      let hasTouchEvent = window.MSPointerEvent || window.PointerEvent || window.TouchEvent
-      let $sliderScrollWrapper = document.querySelector('.Store-home__sliderWrap')
+    created () {
+      this.products = this.appProducts
+    },
 
+    mounted () {
       // Init slider
       this.initSlider()
+
+      let hasTouchEvent = window.MSPointerEvent || window.PointerEvent || window.TouchEvent
+      let $sliderScrollWrapper = document.querySelector('.Store-home__sliderWrap')
 
       if (hasTouchEvent) {
         this.onTouchEvents()

@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Products from '@/data/products.json'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    products: Products,
     sliderActiveProduct: null,
     sliderActiveProductQuantity: 1,
     cart: []
@@ -113,6 +115,7 @@ export default new Vuex.Store({
   },
 
   getters: {
+    appProducts: (state) => state.products,
     sliderActiveProduct: (state) => state.sliderActiveProduct,
     productQuantity: (state) => state.sliderActiveProductQuantity,
     cartInfos: (state) => state.cart

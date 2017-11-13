@@ -3,6 +3,7 @@
 > Vue store app
 
 ## Todo
+- [ ] Add checkout page
 - [ ] Modularize and clean CSS
 - [ ] Put products datas in store instead of calling JSON file in component
 - [ ] Add styles for desktop version (for now the app is only visible on phone size)
